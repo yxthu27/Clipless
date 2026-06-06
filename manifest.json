@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "Clipless",
+  "version": "1.0.0",
+  "description": "几乎隐形的截图 & OCR 笔记中转助手 — 快捷键截图/提取文字，结果直接进剪贴板",
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/sw.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "lib/clipboard.js",
+        "content/overlay.js",
+        "content/selection.js",
+        "content/crop.js",
+        "content/index.js"
+      ],
+      "css": ["content/overlay.css"]
+    }
+  ],
+  "commands": {
+    "capture-screenshot": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "mac": "Command+X"
+      },
+      "description": "区域截图"
+    }
+  }
+}

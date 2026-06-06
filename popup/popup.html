@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clipless</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <h1 class="title">把记笔记的习惯还给你</h1>
+    <hr class="divider">
+    <div class="usage">
+      <h2 class="section-title">使用方法</h2>
+      <p class="usage-text">
+        1 按下&nbsp;<kbd class="shortcut-key" id="shortcut-key-1"></kbd>&nbsp;键开始截图，用鼠标选中并拖拽出区域，再次按下&nbsp;<kbd class="shortcut-key" id="shortcut-key-2"></kbd>&nbsp;键，图片将自动记录到您的剪贴板。
+      </p>
+    </div>
+    <hr class="divider">
+    <div class="shortcuts">
+      <h2 class="section-title">快捷键设置</h2>
+      <a id="shortcut-link" class="shortcut-row" href="#">
+        <span class="shortcut-label">截图快捷键</span>
+        <span class="shortcut-value" id="shortcut-value"></span>
+      </a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
