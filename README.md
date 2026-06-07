@@ -107,7 +107,6 @@ Under the hood, it captures the full visible tab via Chrome's `tabs.captureVisib
 - [x] OCR text extraction (copy text from screenshots)
 - [ ] Basic annotation tools (arrows, highlights, blur)
 - [ ] Screenshot history panel
-- [ ] Custom shortcut per command
 - [ ] Dark / light theme for popup
 
 ### Tech Stack
@@ -208,7 +207,6 @@ Under the hood, it captures the full visible tab via Chrome's `tabs.captureVisib
 - [x] OCR 文字识别（从截图中提取文字）
 - [ ] 基础标注工具（箭头、高亮、模糊）
 - [ ] 截图历史面板
-- [ ] 自定义快捷键
 - [ ] 弹出面板深色/浅色主题
 
 ### 技术栈
