@@ -9,32 +9,39 @@
     return command.shortcut
       .replace(/Command/i, '⌘')
       .replace(/Shift/i, '⇧')
-      .replace(/Ctrl/i, '⌃')
+      .replace(/Ctrl/i, '⃞')
       .replace(/Alt/i, '⌥');
   }
 
   function init() {
     chrome.commands.getAll(function (commands) {
-      const screenshotCmd = commands.find(function (cmd) {
+      var screenshotCmd = commands.find(function (cmd) {
         return cmd.name === 'capture-screenshot';
       });
+      var ocrCmd = commands.find(function (cmd) {
+        return cmd.name === 'capture-ocr';
+      });
 
-      if (screenshotCmd) {
-        const display = formatShortcut(screenshotCmd);
-        document.getElementById('shortcut-key-1').textContent = display;
-        document.getElementById('shortcut-key-2').textContent = display;
-        document.getElementById('shortcut-value').textContent = display;
-      } else {
-        // Command not found — show fallback text
-        document.getElementById('shortcut-key-1').textContent = '未设置';
-        document.getElementById('shortcut-key-2').textContent = '未设置';
-        document.getElementById('shortcut-value').textContent = '未设置';
-      }
+      // Screenshot shortcut
+      var ssDisplay = screenshotCmd ? formatShortcut(screenshotCmd) : '未设置';
+      document.getElementById('shortcut-key-1').textContent = ssDisplay;
+      document.getElementById('shortcut-key-2').textContent = ssDisplay;
+      document.getElementById('shortcut-value').textContent = ssDisplay;
+
+      // OCR shortcut
+      var ocrDisplay = ocrCmd ? formatShortcut(ocrCmd) : '未设置';
+      document.getElementById('shortcut-key-ocr-1').textContent = ocrDisplay;
+      document.getElementById('shortcut-value-ocr').textContent = ocrDisplay;
     });
 
+    var shortcutsUrl = 'chrome://extensions/shortcuts';
     document.getElementById('shortcut-link').addEventListener('click', function (e) {
       e.preventDefault();
-      chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
+      chrome.tabs.create({ url: shortcutsUrl });
+    });
+    document.getElementById('shortcut-link-ocr').addEventListener('click', function (e) {
+      e.preventDefault();
+      chrome.tabs.create({ url: shortcutsUrl });
     });
   }
 

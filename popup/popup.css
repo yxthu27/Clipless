@@ -67,6 +67,10 @@ body {
   transition: background 0.15s;
 }
 
+.shortcut-row + .shortcut-row {
+  margin-top: 8px;
+}
+
 .shortcut-row:hover {
   background: #F0F0F0;
 }

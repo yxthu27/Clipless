@@ -1,7 +1,7 @@
 // Clipless — Capture visible tab module
 // Captures a screenshot of the current visible tab and sends it to the content script
 
-export async function captureScreenshot(tab) {
+export async function captureScreenshot(tab, messageType = 'capture-screenshot') {
   if (!tab || !tab.id) return;
 
   let dataUrl;
@@ -13,12 +13,21 @@ export async function captureScreenshot(tab) {
     });
   } catch (err) {
     console.warn('Clipless: captureVisibleTab failed', err.message);
+    // Notify the content script that the capture failed
+    try {
+      await chrome.tabs.sendMessage(tab.id, {
+        type: 'capture-error',
+        error: err.message || 'captureVisibleTab failed',
+      });
+    } catch (_) {
+      // Content script may also be unavailable
+    }
     return;
   }
 
   try {
     await chrome.tabs.sendMessage(tab.id, {
-      type: 'capture-screenshot',
+      type: messageType,
       dataUrl: dataUrl,
     });
   } catch (err) {

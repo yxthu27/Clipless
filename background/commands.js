@@ -4,6 +4,7 @@ import { captureScreenshot } from './capture.js';
 
 const COMMANDS = {
   'capture-screenshot': handleScreenshot,
+  'capture-ocr': handleOcr,
 };
 
 // Content script files in load order (must match manifest.json content_scripts.js)
@@ -51,6 +52,26 @@ async function handleScreenshot(tab) {
       return;
     }
     await captureScreenshot(tab);
+  }
+}
+
+async function handleOcr(tab) {
+  // Same flow as screenshot, but the content script enters OCR mode
+  try {
+    const response = await chrome.tabs.sendMessage(tab.id, { type: 'ping' });
+    if (response && response.isSelecting) {
+      // Already selecting — confirm in OCR mode
+      await chrome.tabs.sendMessage(tab.id, { type: 'confirm-ocr' });
+    } else {
+      await captureScreenshot(tab, 'capture-ocr');
+    }
+  } catch (_) {
+    try {
+      await ensureContentScript(tab.id);
+    } catch (_) {
+      return;
+    }
+    await captureScreenshot(tab, 'capture-ocr');
   }
 }
 

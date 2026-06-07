@@ -1,12 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Clipless",
-  "version": "1.0.0",
+  "version": "2.0",
   "description": "几乎隐形的截图 & OCR 笔记中转助手 — 快捷键截图/提取文字，结果直接进剪贴板",
   "permissions": [
     "activeTab",
     "clipboardWrite",
-    "scripting"
+    "scripting",
+    "notifications",
+    "offscreen"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -48,6 +50,16 @@
         "mac": "Command+X"
       },
       "description": "区域截图"
+    },
+    "capture-ocr": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+C",
+        "mac": "Command+Shift+C"
+      },
+      "description": "区域截图并识别文字 (OCR)"
     }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; worker-src 'self'; connect-src 'self' https://tessdata.projectnaptha.com https://cdn.jsdelivr.net data:"
   }
 }

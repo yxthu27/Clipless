@@ -26,7 +26,7 @@
   <img src="https://img.shields.io/badge/Chrome-4285F4?logo=googlechrome&logoColor=white" alt="Chrome">
   <img src="https://img.shields.io/badge/Manifest_v3-1976D2" alt="Manifest v3">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
-  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version 1.0.0">
+  <img src="https://img.shields.io/badge/version-2.0-blue" alt="Version 2.0">
   <br><br>
 </div>
 
@@ -59,7 +59,9 @@ Under the hood, it captures the full visible tab via Chrome's `tabs.captureVisib
 
 ### Features
 
-- **⌘X → drag → ⌘X → ⌘V** — 4 actions, 1.5 seconds
+- **⌘X → drag → ⌘X → ⌘V** — 4 actions, 1.5 seconds for screenshots
+- **OCR text extraction** — `⌘ShiftC` (or `Ctrl+Shift+C`) to extract text from any region; bypasses file-save by writing directly to clipboard
+- **Local Tesseract WASM** — OCR runs fully offline via Tesseract.js; no data leaves your machine
 - **Retina-ready** — auto-scales for HiDPI displays
 - **Two-phase confirmation** — first press starts selection, second press confirms (avoids accidental captures)
 - **Stale-flow protection** — if you trigger a new capture during one in progress, the old one cleanly cancels
@@ -96,12 +98,13 @@ Under the hood, it captures the full visible tab via Chrome's `tabs.captureVisib
 | Press `⌘X` / `Ctrl+Shift+X` | A translucent overlay appears over the current page |
 | Drag to select a region | A blue selection rectangle follows your mouse |
 | Press the same shortcut again | The selected area is cropped and copied as PNG |
+| Press `⌘ShiftC` / `Ctrl+Shift+C` | Select a region and extract text via OCR → clipboard |
 | Press `Esc` | Cancel the selection |
-| Paste with `⌘V` / `Ctrl+V` | The screenshot drops into any app |
+| Paste with `⌘V` / `Ctrl+V` | The screenshot (or OCR text) drops into any app |
 
 ### Roadmap
 
-- [ ] OCR text extraction (copy text from screenshots)
+- [x] OCR text extraction (copy text from screenshots)
 - [ ] Basic annotation tools (arrows, highlights, blur)
 - [ ] Screenshot history panel
 - [ ] Custom shortcut per command
@@ -109,7 +112,7 @@ Under the hood, it captures the full visible tab via Chrome's `tabs.captureVisib
 
 ### Tech Stack
 
-**Chrome Extension Manifest V3** · Service Worker · Content Script · Canvas API · Clipboard API
+**Chrome Extension Manifest V3** · Service Worker · Content Script · Canvas API · Clipboard API · Tesseract.js (WASM)
 
 ### License
 
@@ -124,7 +127,7 @@ Under the hood, it captures the full visible tab via Chrome's `tabs.captureVisib
   <img src="https://img.shields.io/badge/Chrome-4285F4?logo=googlechrome&logoColor=white" alt="Chrome">
   <img src="https://img.shields.io/badge/%E6%89%A9%E5%B1%95-v3-1976D2" alt="Manifest v3">
   <img src="https://img.shields.io/badge/%E5%8D%8F%E8%AE%AE-MIT-green" alt="MIT License">
-  <img src="https://img.shields.io/badge/%E7%89%88%E6%9C%AC-1.0.0-blue" alt="Version 1.0.0">
+  <img src="https://img.shields.io/badge/%E7%89%88%E6%9C%AC-2.0-blue" alt="Version 2.0">
   <br><br>
 </div>
 
@@ -158,6 +161,8 @@ Under the hood, it captures the full visible tab via Chrome's `tabs.captureVisib
 ### 功能
 
 - **⌘X → 拖拽 → ⌘X → ⌘V** — 4 个动作、1.5 秒完成截图笔记
+- **OCR 文字识别** — `⌘ShiftC`（或 `Ctrl+Shift+C`）提取任意区域的文字，直接写入剪贴板
+- **本地 Tesseract WASM** — OCR 通过 Tesseract.js 完全离线运行，数据绝不离开你的电脑
 - **Retina 适配** — 自动处理高分屏缩放
 - **两次确认** — 首按开始选择、再按确认提交，避免误截
 - **流程防过期** — 新截图触发时会自动取消进行中的旧流程
@@ -194,12 +199,13 @@ Under the hood, it captures the full visible tab via Chrome's `tabs.captureVisib
 | 按下 `⌘X` / `Ctrl+Shift+X` | 页面出现半透明遮罩层 |
 | 拖拽选择区域 | 蓝色选区跟随鼠标 |
 | 再次按下同一快捷键 | 选区被裁剪为 PNG 并复制到剪贴板 |
+| 按下 `⌘ShiftC` / `Ctrl+Shift+C` | 框选区域并 OCR 识别文字 → 复制到剪贴板 |
 | 按下 `Esc` | 取消选择 |
-| 用 `⌘V` / `Ctrl+V` 粘贴 | 截图出现在任何应用 |
+| 用 `⌘V` / `Ctrl+V` 粘贴 | 截图（或 OCR 文字）出现在任何应用 |
 
 ### 未来规划
 
-- [ ] OCR 文字识别（从截图中提取文字）
+- [x] OCR 文字识别（从截图中提取文字）
 - [ ] 基础标注工具（箭头、高亮、模糊）
 - [ ] 截图历史面板
 - [ ] 自定义快捷键
@@ -207,7 +213,7 @@ Under the hood, it captures the full visible tab via Chrome's `tabs.captureVisib
 
 ### 技术栈
 
-**Chrome 扩展 Manifest V3** · Service Worker · Content Script · Canvas API · Clipboard API
+**Chrome 扩展 Manifest V3** · Service Worker · Content Script · Canvas API · Clipboard API · Tesseract.js (WASM)
 
 ### 协议
 
